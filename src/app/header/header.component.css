@@ -1,0 +1,18 @@
+.backColor {
+  background-color: gainsboro;
+}
+li
+ {
+   margin: 0 5px;
+   text-align: center;
+ }
+
+
+.buttonStyle
+{
+  border: none;
+  background-color: gainsboro;
+}
+.btn {
+  margin: 10px 7px;
+}

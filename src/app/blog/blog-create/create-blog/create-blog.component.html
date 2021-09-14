@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 class="mb-5 text-center">Add Post about your Blog</h2>
+  <div class="row">
+    <div class="col col-lg-4"></div>
+    <div class="col col-lg-4">
+      <form [formGroup]="userForm" (ngSubmit)="submit(userForm.value)" novalidate>
+
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control inputStyle" formControlName="title"
+            [ngClass]="{ 'is-invalid': f.title.touched && f.title.errors }">
+          <div *ngIf="f.title.touched && f.title.errors?.required" class="invalid-feedback">
+            Title is required
+          </div>
+
+          <div class="form-group">
+            <label>Content</label>
+            <textarea type="text" rows="5" cols="5" class="form-control" formControlName="content"
+              [ngClass]="{ 'is-invalid': f.content.touched && f.content.errors }">
+        </textarea>
+            <div *ngIf="f.content.touched && f.content.errors?.required" class="invalid-feedback">
+              Content is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Image </label>
+            <input formControlName="image" type="file" class="form-control" (change)="onFileChange($event)"
+              [ngClass]="{ 'is-invalid': f.image.touched && f.image.errors }">
+            <div *ngIf="f.image.touched && f.image.errors?.required" class="invalid-feedback">
+              Image is required.
+            </div>
+          </div>
+
+          <img [src]="imageSrc" *ngIf="imageSrc" style="height: 150px; width:150px">
+         <button class="btn btn-danger btn-block" type="submit" [disabled]="!userForm.valid">Submit</button>
+         </div>
+      </form>
+    </div>
+    <div class="col col-lg-4"></div>
+  </div>
+</div>

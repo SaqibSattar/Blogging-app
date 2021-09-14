@@ -1,0 +1,33 @@
+.backColor {
+  background-color: gainsboro;
+}
+
+fa-icon {
+  margin-left: 10px;
+  color: black;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+p {
+  color: #000;
+}
+.marginTop {
+  margin-top: -15px;
+}
+.faPadding {
+  padding-top: 20px;
+}
+.borderClass {
+  border-right: 2px solid black;
+  padding-top: 20px;
+}

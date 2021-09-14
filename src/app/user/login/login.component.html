@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-12">
+      <br>
+      <h3 class="text-center">Log In</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <span>Email:</span> <input type="email" class="form-control inputStyle" formControlName="email"
+              placeholder="Email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+            <div *ngIf="f.email.touched && f.email.errors?.required" class="invalid-feedback text-center">Email is required</div>
+            <div *ngIf="f.email.touched && f.email.errors?.email" class="invalid-feedback text-center">Email must be a valid email
+            </div>
+          </div>
+
+        <label for="name">Password:</label>
+          <div class="form-group">
+            <input type="password" class="form-control inputStyle" placeholder="Password" formControlName="password"
+              [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }">
+            <div *ngIf="f.password.touched && f.password.errors?.required" class="invalid-feedback text-center">
+              Password is required
+            </div>
+            <div *ngIf="f.password.errors?.minlength" class="invalid-feedback text-center">
+              Password must be at least 6 characters long.</div>
+          </div>
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember"> Remember me
+            </label>
+          </div>
+
+          <button type="submit" [disabled]="!registerForm.valid" (click)="login()" class="btn btn-primary">Login</button>
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
