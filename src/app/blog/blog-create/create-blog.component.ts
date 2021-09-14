@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,ReactiveFormsModule, Validators } from "@angular/forms";
-import { Post } from '../../post.model';
-import { PostsService } from "../../posts.service";
+import { Post } from '../post.model';
+import { PostsService } from "../posts.service";
 @Component({
   selector: 'app-create-blog',
   templateUrl: './create-blog.component.html',
