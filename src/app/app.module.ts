@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { MypostsComponent } from './myposts/myposts.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SignupComponent } from './user/signup/signup.component';
     FooterComponent,
     LoginComponent,
     SignupComponent,
+    MypostsComponent,
 
   ],
   imports: [

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,ReactiveFormsModule, Validators } from "@angular/forms";
 import { Post } from '../post.model';
 import { PostsService } from "../posts.service";
+
+import { UserService } from "../../user/user.service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-blog',
   templateUrl: './create-blog.component.html',
@@ -12,7 +15,9 @@ export class CreateBlogComponent implements OnInit {
   userForm!: FormGroup;
   imageSrc: string = '';
   imageUrl: string = ''
-  constructor(public formBuilder: FormBuilder, private post: PostsService) { }
+  author!: string;
+  constructor(public formBuilder: FormBuilder, private post: PostsService,
+    private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -45,6 +50,20 @@ export class CreateBlogComponent implements OnInit {
 
   submit(value: Post)
   {
-    this.post.addPost(value)
+    this.author = this.userService.user
+    if(this.author)
+    {
+      value['author'] = this.author;
+      this.post.addPost(value);
+      setTimeout(() => {
+        this.router.navigate(['myposts'])
+      }, 1000);
+    }
+    else {
+    alert('Please login before uploading blog');
+    this.router.navigate(['login']);
+  } //console.log(value + this.author)
+
+    console.log(value)
   }
 }

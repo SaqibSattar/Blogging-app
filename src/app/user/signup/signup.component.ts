@@ -36,4 +36,3 @@ export class SignupComponent implements OnInit {
     }, 1000);
 }
 }
-

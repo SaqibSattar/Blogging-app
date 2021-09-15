@@ -5,14 +5,14 @@
     <div class="col col-lg-4">
       <form [formGroup]="userForm" (ngSubmit)="submit(userForm.value)" novalidate>
 
-        <div class="form-group">
+        <div class="form-group">z
           <label>Title</label>
           <input type="text" class="form-control inputStyle" formControlName="title"
             [ngClass]="{ 'is-invalid': f.title.touched && f.title.errors }">
           <div *ngIf="f.title.touched && f.title.errors?.required" class="invalid-feedback">
             Title is required
           </div>
-
+ 
           <div class="form-group">
             <label>Content</label>
             <textarea type="text" rows="5" cols="5" class="form-control" formControlName="content"

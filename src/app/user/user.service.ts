@@ -6,7 +6,11 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-  token= '';
+  getPost(value: any) {
+    throw new Error('Method not implemented.');
+  }
+  token: any[] | undefined;
+  user!: string;
 
   constructor(private http: HttpClient) { }
 
@@ -16,12 +20,12 @@ export class UserService {
 
  Login(value: any)
   {
-    this.http.post<{token: string}>('http://localhost:3000/login', value)
+    this.http.post('http://localhost:3000/login', value)
       .subscribe((res: any) => {
-        console.log(res.token);
         this.token = res.token;
         console.log(this.token)
-
+        this.user = res.id;
+        console.log(res.id);
       })
     }
 

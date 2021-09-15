@@ -13,7 +13,7 @@
         <div *ngIf="f.name.touched && f.name.errors?.required" class="invalid-feedback text-center">
            Name is required
         </div>
-        <div *ngIf="f.name.errors?.minlength" class="invalid-feedback"> Name must be at least 4 characters
+        <div *ngIf="f.name.errors?.minlength" class="invalid-feedback text-center"> Name must be at least 4 characters
           long.</div>
       </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="form-group">
           <span>Email:</span> <input type="email" class="form-control inputStyle" formControlName="email"
             placeholder="Email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
-          <div *ngIf="f.email.touched && f.email.errors?.required" class="invalid-feedback">Email is required</div>
+          <div *ngIf="f.email.touched && f.email.errors?.required" class="invalid-feedback text-center">Email is required</div>
           <div *ngIf="f.email.touched && f.email.errors?.email" class="invalid-feedback text-center">Email must be a valid email
           </div>
         </div>
@@ -39,7 +39,7 @@
           <div *ngIf="f.password.touched && f.password.errors?.required" class="invalid-feedback text-center">
             Password is required
           </div>
-          <div *ngIf="f.password.errors?.minlength" class="invalid-feedback">
+          <div *ngIf="f.password.errors?.minlength" class="invalid-feedback text-center">
             Password must be at least 6 characters long.</div>
         </div>
       </div>

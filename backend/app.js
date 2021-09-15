@@ -65,12 +65,14 @@ fileFilter: fileFilter
 
 
 app.post("/add", upload.single('image'), (req, res, next) => {
-  console.log(req.file);
+ console.log(req.file);
+ console.log(req.body)
   var post = new Post({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     content: req.body.content,
-     image: "images/" + req.file.filename
+   author: req.body.author,
+  //  image: "images/" + req.file.filename
 
   }); post
     .save()
@@ -184,7 +186,8 @@ app.post("/login", (req, res, next) => {
       );
         return res.status(200).json({
           Message: 'Auth Successful.',
-          token: token
+          token: token,
+          id: user[0]._id
         });
       }
       res.status(401).json({
@@ -199,6 +202,38 @@ app.post("/login", (req, res, next) => {
     });
   })
 });
+
+
+
+
+app.get('/:userId', (req, res, next) => {
+  console.log(req.params.userId)
+  var id = req.params.userId;
+  Post.find({author:id}).select('_id title content image author')
+  .exec()
+  .then(doc => {
+    console.log(doc);
+    if (doc) {
+      res.status(200).json({
+        doc: doc
+      });
+    } else {
+      res.status(404).json({
+        error: 'No Records found for that ID'
+      })
+    }
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    })
+  });
+})
+
+
+
+
+
 
 
 module.exports = app;
