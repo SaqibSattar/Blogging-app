@@ -20,8 +20,15 @@ export class PostsService {
 
   addPost(data: Post)
     {
-      console.log(data)
-      this.http.post('http://localhost:3000/add', data)
+      const postData = new FormData();
+    postData.append("title", data.title);
+    postData.append("content", data.content);
+    postData.append("author", data.author);
+    postData.append("image", data.image);
+
+    console.log(postData);
+
+      this.http.post('http://localhost:3000/add', postData)
         .subscribe((res: any) => {
           alert('Post Successfully Added.');
         })

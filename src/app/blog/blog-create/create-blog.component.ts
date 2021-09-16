@@ -13,38 +13,40 @@ import { Router } from '@angular/router';
 export class CreateBlogComponent implements OnInit {
 
   userForm!: FormGroup;
-  imageSrc: string = '';
-  imageUrl: string = ''
+  imageData!: string;
   author!: string;
+
+
   constructor(public formBuilder: FormBuilder, private post: PostsService,
     private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      content: ['', [Validators.required]],
-      image: ['', [Validators.required]],
+      title: [null, [Validators.required]],
+      content: [null, [Validators.required]],
+      image: [null, [Validators.required]],
 
     })
   }
 
-  onFileChange(event:any) {
-    const reader = new FileReader();
+  onFileSelect(event: Event) {
+    var check = event.target as HTMLInputElement;
+    var check2 = check.files;
+    var tempArray = Array.prototype.slice.call(check2);
+    console.log(tempArray[0]);
+   const file = tempArray[0];
 
-    if(event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-
+   this.userForm.patchValue({ image: file });
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"];
+   if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader();
       reader.onload = () => {
-
-        this.imageSrc = reader.result as string;
-
-        this.userForm.patchValue({
-          fileSource: reader.result
-        });
-
+        this.imageData = reader.result as string;
       };
-}  }
+     reader.readAsDataURL(file);
+    }
+}
+
   // convenience getter for easy access to form fields
   get f() { return this.userForm.controls; }
 

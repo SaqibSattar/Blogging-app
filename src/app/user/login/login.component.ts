@@ -47,6 +47,6 @@ login()
   {
 console.log(this.registerForm.value)
    this.auth.Login(this.registerForm.value);
-   this.router.navigate(['home']);
+   this.router.navigate(['posts']);
   }
 }
