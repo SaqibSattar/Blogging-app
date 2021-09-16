@@ -72,7 +72,7 @@ app.post("/add", upload.single('image'), (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
    author: req.body.author,
-  //  image: "images/" + req.file.filename
+   image: "images/" + req.file.filename
 
   }); post
     .save()
