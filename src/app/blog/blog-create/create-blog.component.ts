@@ -26,7 +26,7 @@ export class CreateBlogComponent implements OnInit {
       content: [null, [Validators.required]],
       image: [null, [Validators.required]],
 
-    })
+    });
   }
 
   onFileSelect(event: Event) {

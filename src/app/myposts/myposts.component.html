@@ -23,7 +23,25 @@
              <b><label>Blog ID</label></b>
              <br>
              <span>{{ post._id}}</span>
-            </div>
+             <br>
+             <b><label>Blog Status</label></b>
+             <br>
+             <span *ngIf="post.status === 'approved'">
+             <button disabled class="btn btn-success">
+              {{ post.status }}
+             </button>
+           </span>
+           <span *ngIf="post.status === 'pending'">
+            <button disabled class="btn btn-warning">
+             {{ post.status }}
+            </button>
+          </span>
+          <span *ngIf="post.status === 'rejected'">
+            <button disabled class="btn btn-danger">
+             {{ post.status }}
+            </button>
+          </span>
+<br>
             <b><label>Blog Picture</label></b>
             <br>
             <img src="{{baseUrl + post.image }}" style="height: 100px; width: 100px;"alt="Blog image">
@@ -31,6 +49,7 @@
              <button type="button" class="btn btn-danger ml-2 mb-2 text-center" (click)="removePost(post._id)">Delete</button>
             <button type="button" class="btn btn-primary ml-2 mb-2 text-center">Edit</button>
           </div>
+        </div>
           <br>
         </div>
         <br>

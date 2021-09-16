@@ -92,7 +92,7 @@ app.post("/add", upload.single('image'), (req, res, next) => {
 
 
 app.get("/getPost", (req, res, next) => {
-  Post.find().then(documents => {
+  Post.find({status: 'approved'}).then(documents => {
     res.status(200).json({
       Posts: documents
     });
@@ -209,7 +209,7 @@ app.post("/login", (req, res, next) => {
 app.get('/:userId', (req, res, next) => {
   console.log(req.params.userId)
   var id = req.params.userId;
-  Post.find({author:id}).select('_id title content image author')
+  Post.find({author:id}).select('_id title content image author status')
   .exec()
   .then(doc => {
     console.log(doc);

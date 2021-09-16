@@ -31,6 +31,7 @@ export class MypostsComponent implements OnInit {
       this.mypostService.getBlogs(this.user).subscribe((data: any) =>
       {
         this.posts = data.doc;
+        console.log(this.posts)
       });
     }
     else {

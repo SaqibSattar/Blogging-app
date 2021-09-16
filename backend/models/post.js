@@ -6,7 +6,12 @@ const postSchema = mongoose.Schema({
   content: { type: String, required: true },
   image: { type: String, required: true},
   author: {type: mongoose.Schema.Types.ObjectId,
-  ref : 'User', required: true}
+  ref : 'User', required: true},
+  status: {
+    type: String,
+    enum : ['approved','rejected', 'pending'],
+    default: 'pending'
+},
 });
 
 module.exports = mongoose.model('Post', postSchema);
