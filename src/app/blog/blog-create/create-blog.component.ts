@@ -64,7 +64,7 @@ export class CreateBlogComponent implements OnInit {
     else {
     alert('Please login before uploading blog');
     this.router.navigate(['login']);
-  } //console.log(value + this.author)
+  }
 
     console.log(value)
   }
