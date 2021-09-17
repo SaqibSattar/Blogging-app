@@ -1,5 +1,5 @@
 <div class="container">
-<br>
+  <br>
   <h3 class="text-center">Sign Up</h3><br>
 
   <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate>
@@ -11,7 +11,7 @@
         <input type="text" class="form-control inputStyle" placeholder=" Name" formControlName="name"
           [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }">
         <div *ngIf="f.name.touched && f.name.errors?.required" class="invalid-feedback text-center">
-           Name is required
+          Name is required
         </div>
         <div *ngIf="f.name.errors?.minlength" class="invalid-feedback text-center"> Name must be at least 4 characters
           long.</div>
@@ -23,13 +23,15 @@
         <div class="form-group">
           <span>Email:</span> <input type="email" class="form-control inputStyle" formControlName="email"
             placeholder="Email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
-          <div *ngIf="f.email.touched && f.email.errors?.required" class="invalid-feedback text-center">Email is required</div>
-          <div *ngIf="f.email.touched && f.email.errors?.email" class="invalid-feedback text-center">Email must be a valid email
+          <div *ngIf="f.email.touched && f.email.errors?.required" class="invalid-feedback text-center">Email is
+            required</div>
+          <div *ngIf="f.email.touched && f.email.errors?.email" class="invalid-feedback text-center">Email must be a
+            valid email
           </div>
         </div>
       </div>
-
     </div>
+
     <div class="row">
       <div class="col col-lg-12">
         <label for="name">Password:</label>
@@ -45,5 +47,23 @@
       </div>
     </div>
 
-    <button type="button" value="Submit" type="submit" class="inputStyle text-center btn btn-primary" [disabled]="!userForm.valid">Submit</button>
-<br><br>
+    <div class="row">
+      <div class="col col-lg-12">
+        <div class="form-group">
+          <label for="role">Role :</label>
+          <select formControlName="role" class="form-control"
+            [ngClass]="{ 'is-invalid': f.role.touched && f.role.errors }">
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+          </select>
+          <div *ngIf="f.role.touched && f.role.errors?.required"
+          class="invalid-feedback text-center"> Role is required.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <button type="button" value="Submit" type="submit" class="inputStyle text-center btn btn-primary"
+      [disabled]="!userForm.valid">Submit</button>
+    <br><br>

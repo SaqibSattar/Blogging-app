@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 
 const User = require("./models/user");
 const Post = require('./models/post');
+const Role = require('./models/roles');
 const checkAuth = require('../backend/middleware/checkAuth');
 
 const multer = require("multer");
@@ -133,6 +134,7 @@ app.post("/signup", (req, res, next) => {
             name: req.body.name,
             email: req.body.email,
             password: hash,
+            role: req.body.role
 
           });
           user.save()
@@ -158,38 +160,46 @@ app.post("/signup", (req, res, next) => {
 
 
 app.post("/login", (req, res, next) => {
-  User.find({email: req.body.email})
+  User.findOne({email: req.body.email})
   .exec()
   .then(user => {
-    if (user.length < 1){
+    if (!user){
       return res.status(401).json({
-        Error: 'Auth Failed.'
+        Error: 'User not found.'
 
       });
     }
-    bcryptjs.compare(req.body.password, user[0].password, (err, result) => {
+    bcryptjs.compare(req.body.password, user.password, (err, result) => {
       if (err){
         return res.status(401).json({
-          Error: 'Auth Failed.'
+          Error: 'Incorrect Password.'
         });
       }
       if (result) {
         var JWT_KEY = 'secret';
         var token = jwt.sign({
-          email: user[0].email,
-          userId: user[0]._id
+          email: user.email,
+          userId: user._id,
         },
         JWT_KEY,
         {
           expiresIn: '1h'
         }
       );
-        return res.status(200).json({
-          Message: 'Auth Successful.',
-          token: token,
-          id: user[0]._id
-        });
+      var ObjectId = {
+        id: user._id,
+        name: user.name,
+        email: user.email,
       }
+      return res.status(200).send({
+        statusCode: 200,
+        message: 'Auth Successful.',
+        data: {
+          user: ObjectId,
+          token: token
+        }
+      });
+    }
       res.status(401).json({
         Error: 'Auth Failed.'
       });

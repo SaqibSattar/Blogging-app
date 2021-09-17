@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from './user.model';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class UserService {
   token: any[] | undefined;
   user!: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
     return this.token
@@ -22,10 +23,11 @@ export class UserService {
   {
     this.http.post('http://localhost:3000/login', value)
       .subscribe((res: any) => {
-        this.token = res.token;
-        console.log(this.token)
-        this.user = res.id;
-        console.log(res.id);
+        this.token = res.data.token;
+        this.user = res.data.user;
+        console.log(this.token, this.user);
+        if(this.user)
+        {this.router.navigate(['posts']); }
       })
     }
 

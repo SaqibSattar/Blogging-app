@@ -14,7 +14,7 @@ export class MypostsComponent implements OnInit {
   constructor(private userService: UserService,
     private router: Router, private mypostService: MypostsService) { }
 
-  user!: string;
+  user!: any;
   posts!: any;
   baseUrl = 'http://localhost:3000/'
 
@@ -26,9 +26,10 @@ export class MypostsComponent implements OnInit {
 
   loadMyPost()
   {
+    console.log("This User: ", this.user);
     if(this.user)
     {
-      this.mypostService.getBlogs(this.user).subscribe((data: any) =>
+      this.mypostService.getBlogs(this.user.id).subscribe((data: any) =>
       {
         this.posts = data.doc;
         console.log(this.posts)

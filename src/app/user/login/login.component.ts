@@ -45,8 +45,7 @@ onSubmit() {
 }
 login()
   {
-console.log(this.registerForm.value)
    this.auth.Login(this.registerForm.value);
-   this.router.navigate(['posts']);
+   
   }
 }
